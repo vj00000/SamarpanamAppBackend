@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          String      @id @default(uuid())
+  title       String
+  icon        String
+  color       String
+  description String
+  image       String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  techniques  Technique[]
+}
+
+model Technique {
+  id          String              @id
+  title       String
+  subtitle    String
+  difficulty  String
+  duration    String
+  image       String
+  videoUrl    String?
+  visualType  String?
+  visualRatio String?
+  description String
+  steps       String
+  benefits    String
+  precautions String
+  isFeatured  Boolean             @default(false)
+  categoryId  String
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  favoritedBy FavoriteTechnique[]
+  category    Category            @relation(fields: [categoryId], references: [id])
+}
+
+model Blog {
+  id        String   @id @default(uuid())
+  title     String
+  author    String
+  date      String
+  readTime  String
+  image     String
+  excerpt   String
+  tags      String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id        String              @id @default(uuid())
+  name      String?
+  email     String              @unique
+  dosha     String?
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+  favorites FavoriteTechnique[]
+  sessions  UserSession[]
+}
+
+model UserSession {
+  id          String   @id @default(uuid())
+  userId      String
+  techniqueId String
+  duration    String
+  timestamp   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model FoodMenu {
+  id          String   @id @default(uuid())
+  dosha       String
+  season      String
+  timeOfDay   String
+  suggestion  String
+  image       String
+  description String
+  calories    String
+  tags        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model FavoriteTechnique {
+  id          String    @id @default(uuid())
+  userId      String
+  techniqueId String
+  technique   Technique @relation(fields: [techniqueId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
+
+  @@unique([userId, techniqueId])
+}
