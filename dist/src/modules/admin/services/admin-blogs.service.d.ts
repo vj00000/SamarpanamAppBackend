@@ -10,12 +10,12 @@ export declare class AdminBlogsService {
         image: string;
         createdAt: Date;
         updatedAt: Date;
-        author: string;
-        date: string;
-        readTime: string;
-        excerpt: string;
         tags: string;
         content: string;
+        excerpt: string;
+        readTime: string;
+        author: string;
+        date: string;
     }[]>;
     findOne(id: string): Promise<{
         id: string;
@@ -23,12 +23,12 @@ export declare class AdminBlogsService {
         image: string;
         createdAt: Date;
         updatedAt: Date;
-        author: string;
-        date: string;
-        readTime: string;
-        excerpt: string;
         tags: string;
         content: string;
+        excerpt: string;
+        readTime: string;
+        author: string;
+        date: string;
     } | null>;
     create(dto: CreateBlogDto): Promise<{
         id: string;
@@ -36,12 +36,12 @@ export declare class AdminBlogsService {
         image: string;
         createdAt: Date;
         updatedAt: Date;
-        author: string;
-        date: string;
-        readTime: string;
-        excerpt: string;
         tags: string;
         content: string;
+        excerpt: string;
+        readTime: string;
+        author: string;
+        date: string;
     }>;
     update(id: string, dto: UpdateBlogDto): Promise<{
         id: string;
@@ -49,12 +49,12 @@ export declare class AdminBlogsService {
         image: string;
         createdAt: Date;
         updatedAt: Date;
-        author: string;
-        date: string;
-        readTime: string;
-        excerpt: string;
         tags: string;
         content: string;
+        excerpt: string;
+        readTime: string;
+        author: string;
+        date: string;
     }>;
     remove(id: string): Promise<{
         id: string;
@@ -62,11 +62,11 @@ export declare class AdminBlogsService {
         image: string;
         createdAt: Date;
         updatedAt: Date;
-        author: string;
-        date: string;
-        readTime: string;
-        excerpt: string;
         tags: string;
         content: string;
+        excerpt: string;
+        readTime: string;
+        author: string;
+        date: string;
     }>;
 }
